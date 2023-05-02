@@ -1,26 +1,41 @@
 function findFirstDuplicate(arr) {
   // type your code here
   let dupIndex = -1
-  for(let i = 0; i === dupIndex || i < arr.length; i++) { 
+  for(let i = 0; i !== dupIndex && i < arr.length; i++) { 
     const tempIndex = arr.slice(i + 1, arr.length).findIndex(num => num === arr[i])
-    dupIndex === -1?dupIndex = tempIndex:true 
+    tempIndex !== -1?dupIndex = tempIndex + i + 1:true 
   }
-  debugger
+  
   return dupIndex===-1?dupIndex:arr[dupIndex]
 }
 
 if (require.main === module) {
   // add your own tests in here
   console.log("Expecting: 3");
-  console.log("=>", findFirstDuplicate([2, 1, 3, 3, 2]));
+  console.log(findFirstDuplicate([2, 1, 3, 3, 2]));
 
   console.log("");
 
   console.log("Expecting: -1");
-  console.log("=>", findFirstDuplicate([1, 2, 3, 4]));
+  console.log(findFirstDuplicate([1, 2, 3, 4]));
+
+  console.log("");
+
+  console.log("Expecting: -1");
+  console.log(findFirstDuplicate([]));
+
+  console.log("");
+
+  console.log("Expecting: -1");
+  console.log(findFirstDuplicate([5]));
+
+  console.log("");
+
+  console.log("Expecting: 7");
+  console.log(findFirstDuplicate([7, 1, 3, 2, 7]));
 }
 
-module.exports = findFirstDuplicate;
+// module.exports = findFirstDuplicate;
 
 // Please add your pseudocode to this file
 //Set a default dupplicate index of -1
